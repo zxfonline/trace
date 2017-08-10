@@ -7,6 +7,7 @@ package trace
 import (
 	"net/http"
 
+	_ "github.com/zxfonline/expvar"
 	"github.com/zxfonline/iptable"
 	_ "github.com/zxfonline/pprof"
 	"golang.org/x/net/trace"
