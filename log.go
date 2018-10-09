@@ -67,8 +67,8 @@ func RegisterTraceLog(family string, filePath, fileNamePrefix string) error {
 
 func writeloop() {
 	pm := time.NewTimer(TimePeriod)
-	base := time.Now()
-	pm1 := time.NewTimer(time.Duration(timefix.NextMidnight(base, 1).Unix()-base.Unix()) * time.Second)
+	baset := time.Now()
+	pm1 := time.NewTimer(time.Duration(timefix.NextMidnight(baset, 1).Unix()-baset.Unix()) * time.Second)
 	for {
 		select {
 		case <-pm.C:
