@@ -35,9 +35,9 @@ type ProxyTrace struct {
 }
 
 //TraceStart 开始跟踪
-func TraceStart(family, title string) *ProxyTrace {
+func TraceStart(family, title string, expvar bool) *ProxyTrace {
 	if EnableTracing {
-		pt := &ProxyTrace{tr: golangtrace.New(family, title)}
+		pt := &ProxyTrace{tr: golangtrace.New(family, title, expvar)}
 		return pt
 	}
 	return nil
