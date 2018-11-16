@@ -3,9 +3,7 @@ package trace
 import (
 	"log"
 	"os"
-	"path"
 	"path/filepath"
-	"strings"
 	"time"
 
 	"github.com/zxfonline/fileutil"
@@ -36,11 +34,6 @@ func initTraceLog() {
 
 //RegisterTraceLog 注册跟踪日志日志
 func RegisterTraceLog(family string, filePath, fileNamePrefix string) error {
-	appName := strings.Replace(os.Args[0], "\\", "/", -1)
-	_, name := path.Split(appName)
-	names := strings.Split(name, ".")
-	appName = names[0]
-
 	fileName := fileutil.TransPath(filepath.Join(filePath, fileNamePrefix+"_"+"total"+"_"+time.Now().Format("2006-01-02")+".log"))
 
 	logFile1, err := fileutil.OpenFile(fileName, fileutil.DefaultFileFlag, fileutil.DefaultFileMode)
