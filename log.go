@@ -1,13 +1,13 @@
 package trace
 
 import (
+	"fmt"
 	"log"
 	"os"
 	"path/filepath"
 	"time"
 
 	"github.com/zxfonline/fileutil"
-	"github.com/zxfonline/gerror"
 	"github.com/zxfonline/timefix"
 )
 
@@ -99,7 +99,11 @@ func writeloop() {
 }
 
 func saveTraceLog() {
-	defer gerror.PrintPanicStack()
+	defer func() {
+		if x := recover(); x != nil {
+			fmt.Printf("Recovered %v\n.", x)
+		}
+	}()
 	for _, traceLog := range traceLogs {
 		traceLog.TotalLog.Println(GetFamilyTotalString(traceLog.Name))
 		for i := 0; i <= 9; i++ {
